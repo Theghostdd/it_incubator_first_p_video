@@ -185,19 +185,41 @@ export const videosCollection = {
             const result = await dbVideosInMemory.findIndex(v => v.id === id)
             if (result !== -1) {
 
+                // let createdAt, publicationDate;
+                // if (!data.createdAt && data.publicationDate) {
+                //     const pubDate = new Date(data.publicationDate); // Create date from publicationDate date 
+                //     pubDate.setDate(pubDate.getDate() - 1); // Minus one day
+                //     createdAt = pubDate.toISOString(); // Change to format is Iso String
+                //     publicationDate = data.publicationDate;
+
+                // } else if (!data.createdAt && !data.publicationDate) {
+                //     const currentDate = new Date(); // Create current date and time 
+                //     const plusOneDayToCurrentDate = new Date(currentDate); // Clone current date and time 
+                //     plusOneDayToCurrentDate.setDate(currentDate.getDate() + 1) // Plus one day to current date
+                //     createdAt = currentDate.toISOString() // Change to format is Iso String
+                //     publicationDate = plusOneDayToCurrentDate.toISOString() // Change to format is Iso String
+                // }
+
+                let createdAt = '';
+                if (!data.createdAt && data.publicationDate) {
+                    const pubDate = new Date(data.publicationDate); // Create date from publicationDate date 
+                    pubDate.setDate(pubDate.getDate() - 1); // Minus one day
+                    createdAt = pubDate.toISOString(); // Change to format is Iso String
+                }
+
                 const element = { // Element`s data
                     id: id,
                     title: data.title,
                     author: data.author,
                     canBeDownloaded: data.canBeDownloaded ? data.canBeDownloaded : false, // If canBeDownloaded has value else set default value "false"
                     minAgeRestriction: data.minAgeRestriction ? data.minAgeRestriction : null, // If minAgeRestriction has value else set default value "null"
-                    createdAt: data.createdAt, 
+                    createdAt: createdAt,
                     publicationDate: data.publicationDate, 
                     availableResolutions: data.availableResolutions
                 }
 
                 dbVideosInMemory[result] = element // Update
-                
+
                 const response = {
                     status: 204,
                     message: "OK",
