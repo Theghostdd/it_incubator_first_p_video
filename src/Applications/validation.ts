@@ -96,4 +96,20 @@ export const validation = (req: Request, res: Response, next: NextFunction) => {
     return;
 }
 
+export const validationId = (req: Request, res: Response, next: NextFunction) => {
+    const isNumber = /^\d+$/.test(req.params.id);
+    if (isNumber) {
+        next()
+        return;
+    }
+    return res.status(400).json({
+        errorsMessages: [
+            {
+                message: "ID musts be number type",
+                fields: "id"
+            }
+        ]
+    })
+}
+
 

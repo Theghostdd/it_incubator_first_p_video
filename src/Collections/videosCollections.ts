@@ -1,3 +1,4 @@
+import { get } from "http";
 import { VideoTypes, ResponseVideoType, ResponseVideosType } from "../utils/types"
 
 
@@ -148,6 +149,113 @@ export const videosCollection = {
             }
             return response;
         }  
+    },
+
+    async DeleteVideoById (id: number):Promise<ResponseVideoType> {
+        try { // Catch error
+            const result = await dbVideosInMemory.findIndex(v => v.id === id)
+
+            if (result !== -1) {
+                const deleteElement = await dbVideosInMemory.splice(result, 1)
+                if (deleteElement) {
+                    const response = {
+                        status: 204,
+                            message: "OK",
+                            elements: null,
+                            error: {
+                                message: null
+                            }
+                    }
+                    return response;
+                }
+
+                const response = {
+                    status: 400,
+                        message: "Error",
+                        elements: null,
+                        error: {
+                            message: "Error when deleting a record"
+                        }
+                }
+                return response;
+            }
+
+            const response = {
+                status: 404,
+                    message: "NOT FOUND",
+                    elements: null,
+                    error: {
+                        message: "NOT FOUND"
+                    }
+            }
+            return response;
+
+        } catch (e) { // If process has error
+            const response = {
+                status: 400,
+                    message: "Error",
+                    elements: null,
+                    error: {
+                        message: "Error when deleting a record"
+                    }
+            }
+            return response;
+        }
+    },
+
+    async UpdateVideoById (id: number, data: VideoTypes): Promise<ResponseVideoType> {
+        try { // Catch error
+
+            const result = await dbVideosInMemory.findIndex(v => v.id === id)
+            if (result !== -1) {
+
+                const element = { // Element`s data
+                    id: id,
+                    title: data.title,
+                    author: data.author,
+                    canBeDownloaded: data.canBeDownloaded ? data.canBeDownloaded : false, // If canBeDownloaded has value else set default value "false"
+                    minAgeRestriction: data.minAgeRestriction ? data.minAgeRestriction : null, // If minAgeRestriction has value else set default value "null"
+                    createdAt: data.createdAt, 
+                    publicationDate: data.publicationDate, 
+                    availableResolutions: data.availableResolutions
+                }
+
+                dbVideosInMemory[result] = element // Update
+
+                const response = { 
+                    status: 204,
+                        message: "OK",
+                        elements: null,
+                        error: {
+                            message: null
+                        }
+                }
+                return response;
+            }
+
+            const response = {
+                status: 404,
+                    message: "NOT FOUND",
+                    elements: null,
+                    error: {
+                        message: "NOT FOUND"
+                    }
+            }
+            return response;
+
+            
+
+        } catch (e) { // If process has error
+            const response = {
+                status: 400,
+                    message: "Error",
+                    elements: null,
+                    error: {
+                        message: "Error when deleting a record"
+                    }
+            }
+            return response;
+        }
     }
 
 }
