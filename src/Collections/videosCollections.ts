@@ -201,7 +201,7 @@ export const videosCollection = {
                 const response = { 
                     status: 204,
                         message: "OK",
-                        elements: null,
+                        elements: data,
                         error: {
                             message: null
                         }

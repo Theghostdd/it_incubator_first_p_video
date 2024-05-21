@@ -15,7 +15,7 @@ export type VideoTypes = {
 }
 /* 
 *
-*      Response GET type for Video
+*      Response type for Video
 *
 */
 export type ResponseVideosType = {
