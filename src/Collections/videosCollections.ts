@@ -185,27 +185,14 @@ export const videosCollection = {
             const result = await dbVideosInMemory.findIndex(v => v.id === id)
             if (result !== -1) {
 
-                // let createdAt, publicationDate;
-                // if (!data.createdAt && data.publicationDate) {
-                //     const pubDate = new Date(data.publicationDate); // Create date from publicationDate date 
-                //     pubDate.setDate(pubDate.getDate() - 1); // Minus one day
-                //     createdAt = pubDate.toISOString(); // Change to format is Iso String
-                //     publicationDate = data.publicationDate;
-
-                // } else if (!data.createdAt && !data.publicationDate) {
-                //     const currentDate = new Date(); // Create current date and time 
-                //     const plusOneDayToCurrentDate = new Date(currentDate); // Clone current date and time 
-                //     plusOneDayToCurrentDate.setDate(currentDate.getDate() + 1) // Plus one day to current date
-                //     createdAt = currentDate.toISOString() // Change to format is Iso String
-                //     publicationDate = plusOneDayToCurrentDate.toISOString() // Change to format is Iso String
-                // }
-
-                let createdAt = '';
-                if (!data.createdAt && data.publicationDate) {
-                    const pubDate = new Date(data.publicationDate); // Create date from publicationDate date 
-                    pubDate.setDate(pubDate.getDate() - 1); // Minus one day
-                    createdAt = pubDate.toISOString(); // Change to format is Iso String
+                let createdAt = data.createdAt
+                if (!data.createdAt) {
+                    const getCreatedAt = await dbVideosInMemory.find(v => v.id === id)
+                    if (getCreatedAt) {
+                        createdAt = getCreatedAt?.createdAt
+                    }
                 }
+
 
                 const element = { // Element`s data
                     id: id,
