@@ -85,7 +85,18 @@ export const validation = (req: Request, res: Response, next: NextFunction) => {
             message: "The minAgeRestriction should be between 1 character and 40 characters",
             field: "minAgeRestriction"
         })
-    } // If everything is ok then next 
+    } // If everything is ok then next
+
+    // Validation publicationDate
+    if (data.publicationDate && !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(data.publicationDate)) {
+        errorsMessages.push({
+            message: "Incorrect format date",
+            field: "publicationDate"
+        })
+    }
+
+
+
 
 
     if (errorsMessages.length > 0) { // If error`s array has count over 0 than be error 

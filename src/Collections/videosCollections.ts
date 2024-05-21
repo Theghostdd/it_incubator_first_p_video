@@ -4,31 +4,7 @@ import { VideoTypes, ResponseVideoType, ResponseVideosType } from "../utils/type
 
 
 const dbVideosInMemory: VideoTypes[] = [
-    {
-        id: 1,
-        title: "First Video",
-        author: "Mikhail Marchuk",
-        canBeDownloaded: false,
-        minAgeRestriction: 18,
-        createdAt: "31.12.2023",
-        publicationDate: "01.01.2024",
-        availableResolutions: [
-            "P144", "P240", "P360", "P480", "P720", "P1080", "P1440", "P2160"
-        ]
-    }, 
 
-    {
-        id: 2,
-        title: "Second Video",
-        author: "Mikhail Marchuk",
-        canBeDownloaded: false,
-        minAgeRestriction: 18,
-        createdAt: "31.12.2023",
-        publicationDate: "01.01.2024",
-        availableResolutions: [
-            "P144", "P240", "P360", "P480", "P720", "P1080", "P1440", "P2160"
-        ]
-    }, 
 ]
 
 export const videosCollection = {
@@ -245,6 +221,31 @@ export const videosCollection = {
 
             
 
+        } catch (e) { // If process has error
+            const response = {
+                status: 400,
+                    message: "Error",
+                    elements: null,
+                    error: {
+                        message: "Error when deleting a record"
+                    }
+            }
+            return response;
+        }
+    },
+
+    async AllVideosDeleted (): Promise<ResponseVideoType> {
+        try { // Catch error
+            dbVideosInMemory.splice(0, dbVideosInMemory.length) // Dell
+            const response = {
+                status: 204,
+                    message: "OK",
+                    elements: null,
+                    error: {
+                        message: null
+                    }
+            }
+            return response;
         } catch (e) { // If process has error
             const response = {
                 status: 400,
