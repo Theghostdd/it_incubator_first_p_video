@@ -36,7 +36,12 @@ videoRouter.delete('/:id', validationId, async (req: Request, res: Response) => 
     return res.sendStatus(result.status)
 })
 
-videoRouter.put('/:id', validation, validationId, async (req: Request, res: Response) => {
+// videoRouter.put('/:id', validation, validationId, async (req: Request, res: Response) => {
+//     const result = await videosCollection.UpdateVideoById(+req.params.id, req.body)
+//     return res.sendStatus(result.status)
+// })
+
+videoRouter.put('/:id', validation, async (req: Request, res: Response) => {
     const result = await videosCollection.UpdateVideoById(+req.params.id, req.body)
     return res.sendStatus(result.status)
 })

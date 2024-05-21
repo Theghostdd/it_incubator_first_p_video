@@ -197,7 +197,7 @@ export const videosCollection = {
                 }
 
                 dbVideosInMemory[result] = element // Update
-
+                
                 const response = {
                     status: 204,
                     message: "OK",
@@ -205,7 +205,7 @@ export const videosCollection = {
                     error: {
                         message: null
                     }
-                }
+                };
                 return response;
             }
 
