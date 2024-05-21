@@ -136,44 +136,44 @@ export const videosCollection = {
                 if (deleteElement) {
                     const response = {
                         status: 204,
-                            message: "OK",
-                            elements: null,
-                            error: {
-                                message: null
-                            }
+                        message: "OK",
+                        elements: null,
+                        error: {
+                            message: null
+                        }
                     }
                     return response;
                 }
 
                 const response = {
                     status: 400,
-                        message: "Error",
-                        elements: null,
-                        error: {
-                            message: "Error when deleting a record"
-                        }
+                    message: "Error",
+                    elements: null,
+                    error: {
+                        message: "Error when deleting a record"
+                    }
                 }
                 return response;
             }
 
             const response = {
                 status: 404,
-                    message: "NOT FOUND",
-                    elements: null,
-                    error: {
-                        message: "NOT FOUND"
-                    }
+                message: "NOT FOUND",
+                elements: null,
+                error: {
+                    message: "NOT FOUND"
+                }
             }
             return response;
 
         } catch (e) { // If process has error
             const response = {
                 status: 400,
-                    message: "Error",
-                    elements: null,
-                    error: {
-                        message: "Error when deleting a record"
-                    }
+                message: "Error",
+                elements: null,
+                error: {
+                    message: "Error when deleting a record"
+                }
             }
             return response;
         }
@@ -198,24 +198,24 @@ export const videosCollection = {
 
                 dbVideosInMemory[result] = element // Update
 
-                const response = { 
+                const response = {
                     status: 204,
-                        message: "OK",
-                        elements: data,
-                        error: {
-                            message: null
-                        }
+                    message: "OK",
+                    elements: null,
+                    error: {
+                        message: null
+                    }
                 }
                 return response;
             }
 
             const response = {
                 status: 404,
-                    message: "NOT FOUND",
-                    elements: null,
-                    error: {
-                        message: "NOT FOUND"
-                    }
+                message: "NOT FOUND",
+                elements: null,
+                error: {
+                    message: "NOT FOUND"
+                }
             }
             return response;
 
@@ -224,11 +224,11 @@ export const videosCollection = {
         } catch (e) { // If process has error
             const response = {
                 status: 400,
-                    message: "Error",
-                    elements: null,
-                    error: {
-                        message: "Error when deleting a record"
-                    }
+                message: "Error",
+                elements: null,
+                error: {
+                    message: "Error when deleting a record"
+                }
             }
             return response;
         }
@@ -239,21 +239,21 @@ export const videosCollection = {
             dbVideosInMemory.splice(0, dbVideosInMemory.length) // Dell
             const response = {
                 status: 204,
-                    message: "OK",
-                    elements: null,
-                    error: {
-                        message: null
-                    }
+                message: "OK",
+                elements: null,
+                error: {
+                    message: null
+                }
             }
             return response;
         } catch (e) { // If process has error
             const response = {
                 status: 400,
-                    message: "Error",
-                    elements: null,
-                    error: {
-                        message: "Error when deleting a record"
-                    }
+                message: "Error",
+                elements: null,
+                error: {
+                    message: "Error when deleting a record"
+                }
             }
             return response;
         }

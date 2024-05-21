@@ -88,7 +88,7 @@ export const validation = (req: Request, res: Response, next: NextFunction) => {
     } // If everything is ok then next
 
     // Validation publicationDate
-    if (data.publicationDate && !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/.test(data.publicationDate)) {
+    if (data.publicationDate && !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(data.publicationDate)) {
         errorsMessages.push({
             message: "Incorrect format date",
             field: "publicationDate"

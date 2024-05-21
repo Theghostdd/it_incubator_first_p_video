@@ -38,6 +38,6 @@ videoRouter.delete('/:id', validationId, async (req: Request, res: Response) => 
 
 videoRouter.put('/:id', validation, validationId, async (req: Request, res: Response) => {
     const result = await videosCollection.UpdateVideoById(+req.params.id, req.body)
-    return res.status(result.status).json(result.elements)
+    return res.sendStatus(result.status)
 })
 
