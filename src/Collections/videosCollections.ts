@@ -185,27 +185,10 @@ export const videosCollection = {
             const result = await dbVideosInMemory.findIndex(v => v.id === id)
             if (result !== -1) {
 
-                let createdAt = data.createdAt
-                if (!data.createdAt) {
-                    const getCreatedAt = await dbVideosInMemory.find(v => v.id === id)
-                    if (getCreatedAt) {
-                        createdAt = getCreatedAt?.createdAt
-                    }
-                }
-
-
-                const element = { // Element`s data
-                    id: id,
-                    title: data.title,
-                    author: data.author,
-                    canBeDownloaded: data.canBeDownloaded ? data.canBeDownloaded : false, // If canBeDownloaded has value else set default value "false"
-                    minAgeRestriction: data.minAgeRestriction ? data.minAgeRestriction : null, // If minAgeRestriction has value else set default value "null"
-                    createdAt: createdAt,
-                    publicationDate: data.publicationDate, 
-                    availableResolutions: data.availableResolutions
-                }
-
-                dbVideosInMemory[result] = element // Update
+                dbVideosInMemory[result] = {
+                    ...dbVideosInMemory[result],
+                    ... data
+                } // Update
 
                 const response = {
                     status: 204,
