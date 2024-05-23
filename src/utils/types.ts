@@ -49,3 +49,27 @@ export enum VideoQualityEnum {
     P1440 = "P1440", 
     P2160 = "P2160"
 }
+/* 
+*
+*       Tests
+*
+*/
+export type expectVideoType = {
+    status: number,
+    checkValues?: VideoTypes | null
+}
+
+export type expectVideoErrorType = {
+    status: number,
+    checkValues: {
+        errorsMessages: ErrorValidationType[]
+    }
+    
+}
+
+type ErrorValidationType = {
+    field: string,
+    message: string
+}
+
+
