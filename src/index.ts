@@ -5,4 +5,4 @@ app.listen(SETTINGS.PORT, () => {
   console.log(`Example app listening on port ${SETTINGS.PORT}`)
 })
 
-export { app }
+
